@@ -11,7 +11,7 @@ export default function PlacesFormPage() {
     const [description, setDescription] = useState('')
     const [perks, setPerks] = useState([])
     const [extrainfo, setExtraInfo] = useState('')
-    const [redirect, setRedirect] = useState('')
+    const [redirect, setRedirect] = useState(false)
     function inputHeader(text) {
         return (
             <h2 className="text-2xl mt-4">{text}</h2>
