@@ -8,6 +8,7 @@ const PlaceSchema = new mongoose.Schema ({
     description : String,
     perks : [String],
     extraInfo: String,
+    visibility: String
     // extra1 : Number,
     // extra2: Number,
     // maxGuests: Number

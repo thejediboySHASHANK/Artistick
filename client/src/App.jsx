@@ -6,12 +6,11 @@ import Layout from './Layout'
 import RegisterPage from './pages/RegisterPage'
 import axios from 'axios'
 import {UserContext, UserContextProvider} from './UserContext'
-import {useEffect} from 'react'
 import ProfilePage from './pages/ProfilePage.jsx'
 import PlacesPage from "./pages/PlacesPage.jsx";
 import PlacesFormPage from "./pages/PlacesFormPage.jsx";
 
-axios.defaults.baseURL = 'http://10.6.130.248:4000'
+axios.defaults.baseURL = 'http://10.6.141.227:4000'
 axios.defaults.withCredentials = true
 
 function App() {
@@ -25,6 +24,7 @@ function App() {
                     <Route path="/account/" element={<ProfilePage/>}/>
                     <Route path="/account/places" element={<PlacesPage/>}/>
                     <Route path="/account/places/form" element={<PlacesFormPage/>}/>
+                    <Route path="/account/places/:id" element={<PlacesFormPage/>}/>
                 </Route>
             </Routes>
         </UserContextProvider>

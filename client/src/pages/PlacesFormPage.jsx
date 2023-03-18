@@ -1,17 +1,38 @@
 import PhotosUploader from "../PhotosUploader.jsx";
 import Perks from "../Perks.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import AccountNav from "../AccountNav.jsx";
+import {Navigate, useParams} from "react-router-dom";
+import Perks2 from "../Perks2.jsx";
 
 export default function PlacesFormPage() {
+    const {id} = useParams()
     const [title, setTitle] = useState('')
     const [address, setAddress] = useState('')
     const [addedPhotos, setAddedPhotos] = useState([])
     const [description, setDescription] = useState('')
     const [perks, setPerks] = useState([])
+    const [visibility, setVisibility] = useState('no')
     const [extrainfo, setExtraInfo] = useState('')
     const [redirect, setRedirect] = useState(false)
+    useEffect(() => {
+        if (!id) {
+            return;
+        }
+        axios.get('/places/' + id)
+            .then(res => {
+                const {data} = res
+                setTitle(data.title)
+                setAddress(data.address)
+                setAddedPhotos(data.photos)
+                setDescription(data.description)
+                setPerks(data.perks)
+                setVisibility(data.visibility)
+                setExtraInfo(data.extrainfo)
+            })
+    }, [id])
+
     function inputHeader(text) {
         return (
             <h2 className="text-2xl mt-4">{text}</h2>
@@ -33,20 +54,36 @@ export default function PlacesFormPage() {
         )
     }
 
-    async function addNewPlace(ev) {
+    async function SavePlace(ev) {
         ev.preventDefault();
-
-        await axios.post('/places', {
+        const placeData = {
             title, address, addedPhotos,
-            description, perks, extrainfo
-        })
-        setRedirectToPlacesList(true)
+            description, perks, visibility, extrainfo
+        }
+        if (id) {
+            //update
+            await axios.put('/places', {
+                id,
+                ...placeData
+            })
+            setRedirect(true)
+        } else {
+            await axios.post('/places', placeData)
+            setRedirect(true)
+        }
+
+    }
+
+    if (redirect) {
+        return <Navigate to={'/account/places'}/>
     }
 
     return (
         <div>
             <AccountNav/>
-            <form onSubmit={addNewPlace}>
+            <form onSubmit={SavePlace}>
+                {preInput('Visibility', 'Make it private, if you want to print private photos/posters. Public, if you want to participate in "earn-with-Artistick" program.')}
+                <Perks2 selected={visibility} onChange={setVisibility} />
                 {preInput('Title', 'Title for your design, try to make it catchy for better advertisment')}
                 <input type="text" value={title} onChange={ev => setTitle(ev.target.value)}
                        placeholder="title, for example: My dashing design"/>
