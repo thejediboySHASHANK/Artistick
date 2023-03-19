@@ -10,7 +10,7 @@ import ProfilePage from './pages/ProfilePage.jsx'
 import PlacesPage from "./pages/PlacesPage.jsx";
 import PlacesFormPage from "./pages/PlacesFormPage.jsx";
 
-axios.defaults.baseURL = 'http://10.6.141.227:4000'
+axios.defaults.baseURL = 'http://10.6.134.238:4000'
 axios.defaults.withCredentials = true
 
 function App() {

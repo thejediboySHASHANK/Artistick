@@ -30,7 +30,7 @@ app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use(cors({
     credentials: true,
-    origin: 'http://10.6.141.227:5173',
+    origin: 'http://10.6.134.238:5173',
     // origin: 'http://192.168.237.65:5173',
 
     // origin: '*',
@@ -144,7 +144,7 @@ app.post('/places', (req, res) => {
 
 })
 
-app.get('/places', (req, res) => {
+app.get('/user-designs', (req, res) => {
     const {token} = req.cookies
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
         const {id} = userData
@@ -175,6 +175,10 @@ app.put('/places', async (req, res) => {
             res.json('ok')
         }
     })
+})
+
+app.get ('/places', async (req, res) => {
+    res.json (await Place.find({visibility: 'yes'}))
 })
 app.listen(4000);
 

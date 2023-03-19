@@ -7,7 +7,7 @@ import axios from "axios";
 export default function PlacesPage() {
     const [places, setPlaces] = useState([])
     useEffect(() => {
-        axios.get('/places').then(({data}) => {
+        axios.get('/user-designs').then(({data}) => {
             setPlaces(data)
         })
     }, [])
