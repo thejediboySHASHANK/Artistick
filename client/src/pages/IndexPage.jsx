@@ -14,7 +14,7 @@ export default function IndexPage() {
     return (
         <div className="mt-8 grid gap-x-6 gap-y-8 grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
             {designs.length > 0 && designs.map(design => (
-                <div>
+                <Link to={'/design/'+design._id}>
                     <div className="bg-gray-300 mb-2 rounded-2xl">
                         {design.photos?.[0] && (
                             <img className="rounded-2xl object-contain aspect-square"
@@ -25,7 +25,7 @@ export default function IndexPage() {
                     <div className="mt-1 lg: text-2xl">
                         <span className="">₹{design.price}</span>
                     </div>
-                </div>
+                </Link>
             ))}
         </div>
     );

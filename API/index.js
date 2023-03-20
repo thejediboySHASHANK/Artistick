@@ -30,7 +30,7 @@ app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use(cors({
     credentials: true,
-    origin: 'http://10.6.135.120:5173',
+    origin: 'http://10.6.132.50:5173',
     // origin: 'http://192.168.237.65:5173',
 
     // origin: '*',
@@ -129,7 +129,7 @@ app.post('/places', (req, res) => {
     const {token} = req.cookies
     const {
         title, address, addedPhotos,
-        description, perks, visibility, extrainfo
+        description, perks, visibility, extraInfo
     } = req.body
     const price = 50
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
@@ -137,7 +137,7 @@ app.post('/places', (req, res) => {
         const PlaceDoc = await Place.create({
             owner: userData.id,
             title, address, photos: addedPhotos,
-            description, perks, visibility, extrainfo, price
+            description, perks, visibility, extraInfo, price
 
         })
         res.json(PlaceDoc)
@@ -162,7 +162,7 @@ app.put('/places', async (req, res) => {
     const {token} = req.cookies
     const {
         id, title, address, addedPhotos,
-        description, perks, visibility, extrainfo
+        description, perks, visibility, extraInfo
     } = req.body
 
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
@@ -171,7 +171,7 @@ app.put('/places', async (req, res) => {
         if (userData.id === placeDoc.owner.toString()) {
             placeDoc.set({
                 title, address, photos: addedPhotos,
-                description, perks, visibility, extrainfo, price
+                description, perks, visibility, extraInfo, price
             })
             await placeDoc.save()
             res.json('ok')

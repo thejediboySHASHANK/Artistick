@@ -14,7 +14,7 @@ export default function PlacesFormPage() {
     const [description, setDescription] = useState('')
     const [perks, setPerks] = useState([])
     const [visibility, setVisibility] = useState('no')
-    const [extrainfo, setExtraInfo] = useState('')
+    const [extraInfo, setExtraInfo] = useState('')
     const [redirect, setRedirect] = useState(false)
     useEffect(() => {
         if (!id) {
@@ -29,7 +29,7 @@ export default function PlacesFormPage() {
                 setDescription(data.description)
                 setPerks(data.perks)
                 setVisibility(data.visibility)
-                setExtraInfo(data.extrainfo)
+                setExtraInfo(data.extraInfo)
             })
     }, [id])
 
@@ -58,7 +58,7 @@ export default function PlacesFormPage() {
         ev.preventDefault();
         const placeData = {
             title, address, addedPhotos,
-            description, perks, visibility, extrainfo
+            description, perks, visibility, extraInfo
         }
         if (id) {
             //update
@@ -104,7 +104,7 @@ export default function PlacesFormPage() {
                 </div>
 
                 {preInput('Extra info', 'Genre of poster, eg : Anime, cyberpunk, etc...')}
-                <textarea value={extrainfo} onChange={ev => setExtraInfo(ev.target.value)}/>
+                <textarea value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)}/>
                 <button className="primary my-4">Save</button>
             </form>
         </div>
