@@ -30,7 +30,7 @@ app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use(cors({
     credentials: true,
-    origin: 'http://10.6.134.238:5173',
+    origin: 'http://10.6.135.120:5173',
     // origin: 'http://192.168.237.65:5173',
 
     // origin: '*',
@@ -131,12 +131,13 @@ app.post('/places', (req, res) => {
         title, address, addedPhotos,
         description, perks, visibility, extrainfo
     } = req.body
+    const price = 50
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
         if (err) throw err;
         const PlaceDoc = await Place.create({
             owner: userData.id,
             title, address, photos: addedPhotos,
-            description, perks, visibility, extrainfo
+            description, perks, visibility, extrainfo, price
 
         })
         res.json(PlaceDoc)
@@ -166,10 +167,11 @@ app.put('/places', async (req, res) => {
 
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
         const placeDoc = await Place.findById(id)
+        const price = 50
         if (userData.id === placeDoc.owner.toString()) {
             placeDoc.set({
                 title, address, photos: addedPhotos,
-                description, perks, visibility, extrainfo
+                description, perks, visibility, extrainfo, price
             })
             await placeDoc.save()
             res.json('ok')
@@ -177,8 +179,8 @@ app.put('/places', async (req, res) => {
     })
 })
 
-app.get ('/places', async (req, res) => {
-    res.json (await Place.find({visibility: 'yes'}))
+app.get('/places', async (req, res) => {
+    res.json(await Place.find({visibility: 'yes'}))
 })
 app.listen(4000);
 

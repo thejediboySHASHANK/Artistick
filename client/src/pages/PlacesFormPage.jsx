@@ -82,8 +82,6 @@ export default function PlacesFormPage() {
         <div>
             <AccountNav/>
             <form onSubmit={SavePlace}>
-                {preInput('Visibility', 'Make it private, if you want to print private photos/posters. Public, if you want to participate in "earn-with-Artistick" program.')}
-                <Perks2 selected={visibility} onChange={setVisibility} />
                 {preInput('Title', 'Title for your design, try to make it catchy for better advertisment')}
                 <input type="text" value={title} onChange={ev => setTitle(ev.target.value)}
                        placeholder="title, for example: My dashing design"/>
@@ -93,6 +91,9 @@ export default function PlacesFormPage() {
 
                 {preInput('Photos', 'more = better')}
                 <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos}/>
+
+                {preInput('Visibility', 'Make it private, if you want to print private photos/posters. Public, if you want to participate in "earn-with-Artistick" program.')}
+                <Perks2 selected={visibility} onChange={setVisibility} />
 
                 {preInput('Description', 'description of the design')}
                 <textarea value={description} onChange={ev => setDescription(ev.target.value)}/>
