@@ -9,6 +9,7 @@ const bookingSchema = new mongoose.Schema({
     price: Number,
     deliveryStatus: String,
     address : String,
+    DateOfBooked: Date,
 })
 
 const BookingModel = mongoose.model('Booking', bookingSchema)

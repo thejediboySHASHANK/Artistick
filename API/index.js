@@ -31,7 +31,7 @@ app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use(cors({
     credentials: true,
-    origin: 'http://10.6.132.182:5173',
+    origin: ['http://10.6.132.182:5173', 'localhost:5173'],
     // origin: 'http://192.168.237.65:5173',
 
     // origin: '*',
@@ -194,10 +194,10 @@ app.get('/places', async (req, res) => {
 app.post('/orders', async (req, res) => {
     const userData = await getUserDataFromReq(req)
     const {
-        design, numberOfOrders, name, phone, price, deliveryStatus, address
+        design, numberOfOrders, name, phone, price, deliveryStatus, address, DateOfBooked
     } = req.body
     Booking.create({
-        design, numberOfOrders, name, phone, price, user: userData.id, deliveryStatus, address
+        design, numberOfOrders, name, phone, price, user: userData.id, deliveryStatus, address, DateOfBooked
     }).then((doc) => {
         res.json(doc)
     }).catch((err) => {

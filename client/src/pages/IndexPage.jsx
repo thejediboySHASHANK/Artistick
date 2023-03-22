@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import HeroAnimation from "../Hero/HeroAnimation.jsx";
 
+
 export default function IndexPage() {
     const [designs, setDesigns] = useState([])
     useEffect(() => {

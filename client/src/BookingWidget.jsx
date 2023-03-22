@@ -12,6 +12,7 @@ export default function BookingWidget({design}) {
     const [address, setAddress] = useState('')
     const {user} = useContext(UserContext)
     const [deliveryStatus, setDeliveryStatus] = useState('Shipping')
+    const [DateOfBooked, setDateOfBooked] = useState(new Date(new Date().getTime() - new Date().getTimezoneOffset()*60*1000))
 
     useEffect(() => {
         if (user) {
@@ -67,7 +68,8 @@ export default function BookingWidget({design}) {
             design: design._id,
             price: numberOfOrders * design.price,
             deliveryStatus,
-            address
+            address,
+            DateOfBooked
         })
         const orderId = response.data._id
         setRedirect(`/account/orders/${orderId}`)

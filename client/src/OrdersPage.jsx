@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 
 export default function OrdersPage() {
     const [orders, setOrders] = useState([])
+    const [date, setDate] = useState(new Date())
     useEffect(() => {
         axios.get('/orders').then(res => {
             setOrders(res.data)
@@ -16,7 +17,9 @@ export default function OrdersPage() {
         <div>
             <AccountNav />
             <div className="mx-auto" style={{maxWidth: "1000px"}}>
-                {orders?.length > 0 && orders.map (order => (
+                {orders?.length > 0 && orders
+                    .sort((a, b) => new Date(b.DateOfBooked) - new Date(a.DateOfBooked))
+                    .map (order => (
                     <Link to={`/account/orders/${order._id}`} className="flex gap-4 bg-gray-200 rounded-2xl overflow-hidden mt-4">
                         <div className="w-48">
                             <PlaceImg place={order.design} />
@@ -24,7 +27,10 @@ export default function OrdersPage() {
                         <div className="py-3 grow">
                             <h2 className="text-xl">{order.design.title}</h2>
                             <div className="border-t border-gray-300 mt-2 py-5">
-                                Number Of Orders : {order.numberOfOrders}<br/>
+                                <div>
+                                    Number Of Orders : {order.numberOfOrders} |
+                                    Date Ordered :  {order.DateOfBooked}
+                                </div>
                             </div>
                             <div className="text-xl flex gap-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
