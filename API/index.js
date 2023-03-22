@@ -31,7 +31,7 @@ app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use(cors({
     credentials: true,
-    origin: 'http://10.6.134.197:5173',
+    origin: 'http://10.6.132.182:5173',
     // origin: 'http://192.168.237.65:5173',
 
     // origin: '*',

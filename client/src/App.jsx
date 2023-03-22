@@ -14,7 +14,7 @@ import OrdersPage from "./OrdersPage.jsx";
 import OrderPage from "./OrderPage.jsx";
 import HeroAnimation from "./Hero/HeroAnimation.jsx";
 
-axios.defaults.baseURL = 'http://10.6.134.197:4000'
+axios.defaults.baseURL = 'http://10.6.132.182:4000'
 axios.defaults.withCredentials = true
 
 function App() {
@@ -33,8 +33,6 @@ function App() {
                     <Route path="/account/orders" element={<OrdersPage/>}/>
                     <Route path="/account/orders/:id" element={<OrderPage/>}/>
                     <Route path="/beta" element={<HeroAnimation/>}/>
-
-
                 </Route>
             </Routes>
         </UserContextProvider>

@@ -37,6 +37,11 @@
 .spacing {
     margin-top: 15vw;
 }
+/*.tick {*/
+/*    font-size: 5rem;*/
+/*    position: ;*/
+/*    margin-bottom: 4rem;*/
+/*}*/
 #left-side {
     background-color: var(--left-color);
     width: 60%;

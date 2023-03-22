@@ -1,5 +1,6 @@
 import "./hero.css"
 import {useEffect} from "react";
+
 export default function HeroAnimation() {
     useEffect(() => {
         const left = document.getElementById("left-side");
@@ -16,15 +17,17 @@ export default function HeroAnimation() {
         <div className="mt-6 relative">
             <div id="left-side" className="side rounded-3xl">
                 <h2 className="title p-4">
-                    Express, Explore Your Amazing
-                    <span className="fancy underline">  Artistick</span>
+                    Upload, Refer and Earn with
+                    <span className="fancy"> Artistick.com<span className="tick"></span></span>
                 </h2>
+                {/*<h2 className="flex relative text-white">Know More</h2>*/}
             </div>
             <div id="right-side" className="side rounded-3xl">
                 <h2 className="title p-4">
                     Express, Explore Your Amazing
                     <span className="fancy underline"> Posters</span>
                 </h2>
+                {/*<h2 className="flex relative text-white">Know More</h2>*/}
             </div>
         </div>
     )
