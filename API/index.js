@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('./models/User')
 const Place = require('./models/Place')
+const Booking = require('./models/Booking')
 const cookieParser = require('cookie-parser');
 const imageDownloader = require('image-downloader')
 const multer = require('multer')
@@ -30,7 +31,7 @@ app.use(cookieParser())
 app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use(cors({
     credentials: true,
-    origin: 'http://10.6.132.50:5173',
+    origin: 'http://10.6.134.197:5173',
     // origin: 'http://192.168.237.65:5173',
 
     // origin: '*',
@@ -40,7 +41,14 @@ app.use(cors({
 // console.log (process.env.MONGO_URL);
 mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
 
-
+function getUserDataFromReq(req) {
+    return new Promise((resolve, reject) => {
+        jwt.verify(req.cookies.token, jwtSecret, {}, async (err, userData) => {
+            if (err) throw err;
+            resolve(userData)
+        })
+    })
+}
 app.get('/test', (req, res) => {
     res.json('test ok')
 });
@@ -182,6 +190,28 @@ app.put('/places', async (req, res) => {
 app.get('/places', async (req, res) => {
     res.json(await Place.find({visibility: 'yes'}))
 })
+
+app.post('/orders', async (req, res) => {
+    const userData = await getUserDataFromReq(req)
+    const {
+        design, numberOfOrders, name, phone, price, deliveryStatus, address
+    } = req.body
+    Booking.create({
+        design, numberOfOrders, name, phone, price, user: userData.id, deliveryStatus, address
+    }).then((doc) => {
+        res.json(doc)
+    }).catch((err) => {
+        throw err;
+    })
+})
+
+
+
+app.get('/orders', async (req, res) => {
+    const userData = await getUserDataFromReq(req)
+    res.json(await Booking.find({user:userData.id}).populate('design'))
+})
+
 app.listen(4000);
 
 // 3IIjsFeC6Cs9KnlP

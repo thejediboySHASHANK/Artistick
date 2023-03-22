@@ -10,8 +10,11 @@ import ProfilePage from './pages/ProfilePage.jsx'
 import PlacesPage from "./pages/PlacesPage.jsx";
 import PlacesFormPage from "./pages/PlacesFormPage.jsx";
 import PlacePage from "./pages/PlacePage.jsx";
+import OrdersPage from "./OrdersPage.jsx";
+import OrderPage from "./OrderPage.jsx";
+import HeroAnimation from "./Hero/HeroAnimation.jsx";
 
-axios.defaults.baseURL = 'http://10.6.132.50:4000'
+axios.defaults.baseURL = 'http://10.6.134.197:4000'
 axios.defaults.withCredentials = true
 
 function App() {
@@ -27,6 +30,11 @@ function App() {
                     <Route path="/account/places/form" element={<PlacesFormPage/>}/>
                     <Route path="/account/places/:id" element={<PlacesFormPage/>}/>
                     <Route path="/design/:id" element={<PlacePage/>}/>
+                    <Route path="/account/orders" element={<OrdersPage/>}/>
+                    <Route path="/account/orders/:id" element={<OrderPage/>}/>
+                    <Route path="/beta" element={<HeroAnimation/>}/>
+
+
                 </Route>
             </Routes>
         </UserContextProvider>

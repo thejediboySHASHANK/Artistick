@@ -972,6 +972,11 @@
   "resolved" "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz"
   "version" "1.0.0"
 
+"sweetalert2@^11.7.3":
+  "integrity" "sha512-fUN/fyVSBZNtY4Rr/Qtxn7tNNnlRAbUhQxTQ9uOo0xVMIHBmqq4/9pau5N9dB2pvkB353XL/ywRAycscLoYU3w=="
+  "resolved" "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.7.3.tgz"
+  "version" "11.7.3"
+
 "tailwindcss@^3.2.7":
   "integrity" "sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ=="
   "resolved" "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.2.7.tgz"
