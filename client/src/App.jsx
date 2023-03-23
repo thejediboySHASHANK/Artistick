@@ -15,6 +15,7 @@ import OrderPage from "./OrderPage.jsx";
 import HeroAnimation from "./Hero/HeroAnimation.jsx";
 import GoogleOath from "./GoogleOath/GoogleOath.jsx";
 import Darkmode from "darkmode-js/src";
+import Cart from "./Cart/Cart.jsx";
 
 axios.defaults.baseURL = 'http://10.6.132.182:4000'
 axios.defaults.withCredentials = true
@@ -50,6 +51,7 @@ function App() {
                     <Route path="/account/orders/:id" element={<OrderPage/>}/>
                     <Route path="/beta" element={<HeroAnimation/>}/>
                     <Route path="/google" element={<GoogleOath/>}/>
+                    <Route path="/cart" element={<Cart/>}/>
                 </Route>
             </Routes>
         </UserContextProvider>
