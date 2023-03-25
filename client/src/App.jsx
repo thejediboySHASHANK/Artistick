@@ -19,7 +19,7 @@ import Cart from "./Cart/Cart.jsx";
 import {useEffect} from "react";
 import SubPage from "./pages/Subpage.jsx";
 
-axios.defaults.baseURL = 'http://10.6.129.90:4000'
+axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL
 axios.defaults.withCredentials = true
 
 function App() {
