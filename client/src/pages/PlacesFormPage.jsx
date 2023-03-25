@@ -5,6 +5,7 @@ import axios from "axios";
 import AccountNav from "../AccountNav.jsx";
 import {Navigate, useParams} from "react-router-dom";
 import Perks2 from "../Perks2.jsx";
+import Perks3 from "../Perks3.jsx";
 
 export default function PlacesFormPage() {
     const {id} = useParams()
@@ -14,7 +15,8 @@ export default function PlacesFormPage() {
     const [description, setDescription] = useState('')
     const [perks, setPerks] = useState([])
     const [visibility, setVisibility] = useState('no')
-    const [extraInfo, setExtraInfo] = useState('')
+    const [extraInfo, setExtraInfo] = useState([])
+    const [rank, setRank] = useState(0)
     const [redirect, setRedirect] = useState(false)
     useEffect(() => {
         if (!id) {
@@ -58,7 +60,7 @@ export default function PlacesFormPage() {
         ev.preventDefault();
         const placeData = {
             title, address, addedPhotos,
-            description, perks, visibility, extraInfo
+            description, perks, visibility, extraInfo,
         }
         if (id) {
             //update
@@ -68,7 +70,10 @@ export default function PlacesFormPage() {
             })
             setRedirect(true)
         } else {
-            await axios.post('/places', placeData)
+            await axios.post('/places', {
+                rank,
+                ...placeData
+            })
             setRedirect(true)
         }
 
@@ -79,7 +84,7 @@ export default function PlacesFormPage() {
     }
 
     return (
-        <div>
+        <div className="mb-10 md:-mb-10">
             <AccountNav/>
             <form onSubmit={SavePlace}>
                 {preInput('Title', 'Title for your design, try to make it catchy for better advertisment')}
@@ -104,7 +109,9 @@ export default function PlacesFormPage() {
                 </div>
 
                 {preInput('Extra info', 'Genre of poster, eg : Anime, cyberpunk, etc...')}
-                <textarea value={extraInfo} onChange={ev => setExtraInfo(ev.target.value)}/>
+                <div className="grid mt-2 gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+                    <Perks3 selected={extraInfo} onChange={setExtraInfo} />
+                </div>
                 <button className="primary my-4">Save</button>
             </form>
         </div>

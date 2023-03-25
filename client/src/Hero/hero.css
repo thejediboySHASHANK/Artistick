@@ -25,7 +25,7 @@
 .side .title {
     font-family: "Rubik", sans-serif;
     font-size: 6vw;
-    margin: 0px 14vw;
+    margin: 0px 16vw;
     width: 80vw;
 }
 
@@ -35,8 +35,9 @@
     line-height: 0.8em;
 }
 .spacing {
-    margin-top: 15vw;
+    margin-top: 65vh;
 }
+
 /*.tick {*/
 /*    font-size: 5rem;*/
 /*    position: ;*/
@@ -69,14 +70,20 @@
     color: #F5385D;
 }
 
-@media only screen and (max-width: 1635px) {
+@media only screen and (max-width: 550px) {
+    .side {
+        height: 55vh;
+    }
+    .title {
+        margin: 10vw 5vw;
+    }
     .spacing {
-        margin-top: 20vw;
+        margin-top: 60vh;
     }
 }
 
-@media only screen and (max-width: 1224px) {
-    .spacing {
-        margin-top: 25vw;
-    }
-}
+/*@media only screen and (max-width: 1224px) {*/
+/*    .spacing {*/
+/*        margin-top: 20vw;*/
+/*    }*/
+/*}*/

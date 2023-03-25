@@ -7,9 +7,12 @@ const PlaceSchema = new mongoose.Schema ({
     photos : [String],
     description : String,
     perks : [String],
-    extraInfo: String,
+    extraInfo: [String],
     visibility: String,
-    price: Number
+    price: Number,
+    views : {type: Number, default: 0},
+    sales : {type: Number, default: 0},
+    rank: Number
     // extra1 : Number,
     // extra2: Number,
     // maxGuests: Number

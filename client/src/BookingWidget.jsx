@@ -1,6 +1,7 @@
 import {useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {Navigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {UserContext} from "./UserContext.jsx";
 import Swal from "sweetalert2";
 
@@ -13,7 +14,7 @@ export default function BookingWidget({design}) {
     const {user} = useContext(UserContext)
     const [deliveryStatus, setDeliveryStatus] = useState('Shipping')
     const [DateOfBooked, setDateOfBooked] = useState(new Date(new Date().getTime() - new Date().getTimezoneOffset()*60*1000))
-
+    const Nav = useNavigate()
     useEffect(() => {
         if (user) {
             setName(user.name)
@@ -32,11 +33,20 @@ export default function BookingWidget({design}) {
             confirmButtonText: 'Yes, just order already'
         }).then((result) => {
             if (result.isConfirmed) {
-                bookThisDesign()
+                if (user === null) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login/Signup Required',
+                    })
+                    Nav("/login")
+                }
+                else {
+                    bookThisDesign()
+                }
+
             }
         })
     }
-
     async function bookThisDesign() {
         if (name === '') {
             Swal.fire({
@@ -71,6 +81,9 @@ export default function BookingWidget({design}) {
             address,
             DateOfBooked
         })
+        const newSales = design.sales + numberOfOrders
+
+        await axios.put (`/places/${design._id}/sales`, {sales: newSales})
         const orderId = response.data._id
         setRedirect(`/account/orders/${orderId}`)
     }

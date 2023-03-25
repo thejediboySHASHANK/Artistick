@@ -8,6 +8,7 @@ import Layout from "../Layout.jsx";
 
 export default function PlacePage() {
     const {id} = useParams()
+    console.log(id)
     const [design, setDesign] = useState(null)
     useEffect(() => {
         if (!id) {
@@ -16,6 +17,10 @@ export default function PlacePage() {
         axios.get(`/places/${id}`).then(res => {
             setDesign(res.data)
         })
+        // Increment view count
+        axios.put(`/places/${id}/views`).then(res => {
+            console.log('View count incremented');
+        });
 
     }, [id])
 
@@ -23,7 +28,8 @@ export default function PlacePage() {
         return ''
     }
     return (
-        <div className="mt-4 mx-auto bg-gray-100 px-8 py-8 rounded-2xl" style={{maxWidth: "1000px"}}>
+        <div className="mt-4 mx-auto bg-gray-100 px-5 py-5 rounded-2xl md:px-8 md:py-8 lg:px-8 lg:py-8 "
+             style={{maxWidth: "1000px"}}>
             <h1 className="text-3xl">{design.title}</h1>
             <AddressLink>{design.address}</AddressLink>
             <PlaceGallery design={design}/>
@@ -38,7 +44,7 @@ export default function PlacePage() {
                 </div>
             </div>
 
-            <div className="bg-white mt-4 -mx-8 px-8 py-8 border-t">
+            <div className="bg-white mt-4 -mx-5 px-5 py-5 md:-mx-8 md:px-8 md:py-8 border-t">
                 <div>
                     <h2 className="font-semibold text-2xl">Terms Of Condition : </h2>
                 </div>

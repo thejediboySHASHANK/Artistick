@@ -8,7 +8,7 @@ export default function AccountNav() {
         if (subpage === undefined) {
             subpage = 'profile'
         }
-        let classes = 'inline-flex gap-1 py-2 px-6 rounded-full'
+        let classes = 'inline-flex gap-1 py-2 px-2 rounded-full md:px-6'
         if (type === subpage) {
             classes += ' bg-primary text-white rounded-full'
         } else {

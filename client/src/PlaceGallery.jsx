@@ -1,4 +1,5 @@
 import {useState} from "react";
+import Image from "./Image.jsx";
 
 export default function PlaceGallery({design}) {
     const [showAllPhotos, setShowAllPhotos] = useState(false)
@@ -21,7 +22,7 @@ export default function PlaceGallery({design}) {
                     </div>
                     {design?.photos?.length > 0 && design.photos.map(photo => (
                         <div>
-                            <img src={'http://localhost:4000/uploads/' + photo} alt=""/>
+                            <Image src={photo} alt=""/>
                         </div>
                     ))}
                 </div>
@@ -30,13 +31,13 @@ export default function PlaceGallery({design}) {
     }
     return (
         <div className="relative">
-            <div className="grid gap-2 grid-cols-[2fr_1fr] rounded-3xl overflow-hidden">
+            <div className="grid gap-2 grid-cols-2 grid-cols-[2fr_1fr] rounded-3xl overflow-hidden">
                 <div>
                     {design.photos?.[0] && (
                         <div>
-                            <img onClick={() => setShowAllPhotos(true)}
+                            <Image onClick={() => setShowAllPhotos(true)}
                                  className="bg-gray-200 cursor-pointer aspect-square object-cover"
-                                 src={'http://localhost:4000/uploads/' + design.photos[0]} alt=""/>
+                                 src={design.photos[0]} alt=""/>
                         </div>
 
                     )}
@@ -45,23 +46,23 @@ export default function PlaceGallery({design}) {
 
                     <div>
                         {design.photos?.[1] && (
-                            <img onClick={() => setShowAllPhotos(true)}
+                            <Image onClick={() => setShowAllPhotos(true)}
                                  className="bg-gray-200 cursor-pointer aspect-square object-cover"
-                                 src={'http://localhost:4000/uploads/' + design.photos[1]}
+                                 src={design.photos[1]}
                                  alt="single image poster"/>
                         )}
                     </div>
                     <div className="overflow-hidden">
                         {design.photos?.[2] && (
-                            <img onClick={() => setShowAllPhotos(true)}
+                            <Image onClick={() => setShowAllPhotos(true)}
                                  className="bg-gray-200 cursor-pointer aspect-square object-cover relative top-2"
-                                 src={'http://localhost:4000/uploads/' + design.photos[2]}
+                                 src={design.photos[2]}
                                  alt="single image poster"/>
                         )}
                         {!design.photos?.[1] && design.photos?.length === 1 && (
                             <div
-                                className="rounded-3xl overflow-hidden bg-gray-200 aspect-square flex items-center justify-center text-lg font-bold text-gray-400">
-                                This is a single poster image
+                                className="rounded-3xl overflow-hidden bg-gray-200 aspect-square flex items-center justify-center text-sm font-bold text-gray-400 md:text-lg">
+                                <span className="ml-2.5 md:mr-2.5">This is a single poster image</span>
                             </div>
                         )}
                     </div>

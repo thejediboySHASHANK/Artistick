@@ -16,25 +16,31 @@ import HeroAnimation from "./Hero/HeroAnimation.jsx";
 import GoogleOath from "./GoogleOath/GoogleOath.jsx";
 import Darkmode from "darkmode-js/src";
 import Cart from "./Cart/Cart.jsx";
+import {useEffect} from "react";
+import SubPage from "./pages/Subpage.jsx";
 
-axios.defaults.baseURL = 'http://10.6.132.182:4000'
+axios.defaults.baseURL = 'http://10.6.129.90:4000'
 axios.defaults.withCredentials = true
 
 function App() {
-    const options = {
-        bottom: '64px', // default: '32px'
-        right: 'unset', // default: '32px'
-        left: '32px', // default: 'unset'
-        time: '0.5s', // default: '0.3s'
-        mixColor: '#fff', // default: '#fff'
-        backgroundColor: '#fff',  // default: '#fff'
-        buttonColorDark: '#100f2c',  // default: '#100f2c'
-        buttonColorLight: '#fff', // default: '#fff'
-        saveInCookies: false, // default: true,
-        label: '🌓', // default: ''
-        autoMatchOsTheme: true // default: true
-    }
-    new Darkmode().showWidget(options);
+    useEffect(() => {
+        let isMobile = window.innerWidth <= 550;
+        const options = {
+            bottom: isMobile ? '5px' :  '32px', // default: '32px'
+            right: isMobile ? 'unset' : '25px', // default: '32px'
+            left: isMobile ? '25px' : 'unset', // default: 'unset'
+            time: '0.5s', // default: '0.3s'
+            mixColor: '#fff', // default: '#fff'
+            backgroundColor: '#fff',  // default: '#fff'
+            buttonColorDark: '#100f2c',  // default: '#100f2c'
+            buttonColorLight: '#fff', // default: '#fff'
+            saveInCookies: true, // default: true,
+            label: '🌓', // default: ''
+            autoMatchOsTheme: true // default: true
+        }
+        new Darkmode(options).showWidget();
+    }, [])
+
     return (
         <UserContextProvider>
             <Routes>
@@ -47,6 +53,7 @@ function App() {
                     <Route path="/account/places/form" element={<PlacesFormPage/>}/>
                     <Route path="/account/places/:id" element={<PlacesFormPage/>}/>
                     <Route path="/design/:id" element={<PlacePage/>}/>
+                    <Route path="/:category" element={<SubPage/>}/>
                     <Route path="/account/orders" element={<OrdersPage/>}/>
                     <Route path="/account/orders/:id" element={<OrderPage/>}/>
                     <Route path="/beta" element={<HeroAnimation/>}/>
