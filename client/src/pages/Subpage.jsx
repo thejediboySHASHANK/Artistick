@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import HeroAnimation from "../Hero/HeroAnimation.jsx";
 import Cart from "../Cart/Cart.jsx";
+import Image from "../Image.jsx";
 
 export default function SubPage() {
     const {category} = useParams()
@@ -41,8 +42,8 @@ export default function SubPage() {
                     <Link to={'/design/'+design._id}>
                         <div className="bg-gray-300 mb-2 rounded-2xl">
                             {design.photos?.[0] && (
-                                <img className="rounded-2xl object-contain aspect-square"
-                                     src={'http://localhost:4000/uploads/' + design.photos?.[0]} alt=''/>
+                                <Image className="rounded-2xl object-contain aspect-square"
+                                     src={design.photos?.[0]} alt=''/>
                             )}
                         </div>
                         <div className="rounded-2xl px-4 py-2">

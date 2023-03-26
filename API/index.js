@@ -32,7 +32,7 @@ app.use(express.json());
 
 // }));
 app.use(cookieParser())
-app.use('/api/uploads', express.static(__dirname + '/uploads'))
+app.use('/API/uploads', express.static(__dirname + '/uploads'))
 app.use(cors({
     credentials: true,
     origin: ['http://10.6.129.90:5173', 'localhost:5173'],
