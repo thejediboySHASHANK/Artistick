@@ -41,16 +41,6 @@ app.use(cors({
         'https://artistick-lcea3814p-thejediboyshashank.vercel.app/', 'https://artistick.vercel.app/'],
 
 }));
-app.use((req, res, next) => {
-    const allowedOrigins = ['http://10.6.129.90:5173', 'https://artistick-git-main-thejediboyshashank.vercel.app/',
-        'https://artistick-lcea3814p-thejediboyshashank.vercel.app/', 'https://artistick.vercel.app/'];
-    const origin = req.headers.origin;
-    if (allowedOrigins.includes(origin)) {
-        res.header('Access-Control-Allow-Origin', origin);
-    }
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    next();
-});
 
 
 
