@@ -22,28 +22,15 @@ const bucket = 'shawshank-artistick-webapp'
 
 app.use(express.json());
 
-// app.use(cors({
-//     credentials: true,
-//     // origin: 'http://127.0.0.1:5173',
-//     // 'Access-Control-Allow-Origin': 'http://localhost:5173',
-//     origin: 'http://10.7.211.192:5173',
-//     // origin: '*',
-
-
-// }));
 app.use(cookieParser())
 app.use('/api/uploads', express.static(__dirname + '/uploads'))
 app.use(cors({
     credentials: true,
-    origin: ['http://10.6.129.90:5173', 'localhost:5173', 'https://artistick-git-main-thejediboyshashank.vercel.app/',
-    'https://artistick-lcea3814p-thejediboyshashank.vercel.app/', 'https://artistick.vercel.app/'],
-    // origin: 'http://192.168.237.65:5173',
-
-    // origin: '*',
+    origin: ['http://10.6.129.90:5173', 'https://artistick-git-main-thejediboyshashank.vercel.app/',
+        'https://artistick-lcea3814p-thejediboyshashank.vercel.app/', 'https://artistick.vercel.app/'],
 
 }));
 
-// console.log (process.env.MONGO_URL);
 
 async function uploadToS3(path, originalFilename, mimetype) {
     const client = new S3Client({
@@ -54,10 +41,10 @@ async function uploadToS3(path, originalFilename, mimetype) {
         },
     })
     const parts = originalFilename.split('.')
-    const ext = parts[parts.length-1]
+    const ext = parts[parts.length - 1]
     const newFilename = Date.now() + '.' + ext
     const data = await client.send(new PutObjectCommand({
-        Bucket : bucket,
+        Bucket: bucket,
         Body: fs.readFileSync(path),
         Key: newFilename,
         ContentType: mimetype,
@@ -74,6 +61,7 @@ function getUserDataFromReq(req) {
         })
     })
 }
+
 app.get('/api/test', (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     res.json('test ok')
@@ -191,10 +179,7 @@ app.get('/api/user-designs', (req, res) => {
     })
 
 })
-// app.get('/places/:id', async (req, res) => {
-//     const {id} = req.params
-//     res.json(await Place.find(id))
-// })
+
 app.get('/api/places/:id', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {id} = req.params
@@ -236,7 +221,7 @@ app.put('/api/places/:id/views', async (req, res) => {
         res.sendStatus(500);
     }
 });
-app.put ('/api/places/:id/sales', async (req, res) => {
+app.put('/api/places/:id/sales', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const productId = req.params.id
     const {sales} = req.body
@@ -255,11 +240,11 @@ app.get('/api/places', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     res.json(await Place.find({visibility: 'yes'}))
 })
-app.get ('/api/places/cat/:category', async (req, res) => {
+app.get('/api/places/cat/:category', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {category} = req.params
     const regex = new RegExp(category, 'i');
-    const places = await Place.find({ extraInfo: regex });
+    const places = await Place.find({extraInfo: regex});
     res.json(places);
 })
 
@@ -280,9 +265,8 @@ app.post('/api/orders', async (req, res) => {
 app.get('/api/orders', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const userData = await getUserDataFromReq(req)
-    res.json(await Booking.find({user:userData.id}).populate('design'))
+    res.json(await Booking.find({user: userData.id}).populate('design'))
 })
-
 
 app.listen(4000);
 
