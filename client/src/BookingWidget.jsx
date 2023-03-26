@@ -110,7 +110,7 @@ export default function BookingWidget({design}) {
                         <label>Phone Number : </label>
                         <input type="tel" value={phone} onChange={ev => setPhone(ev.target.value)} required/>
                         <label>Hostel name and room : </label>
-                        <input type="tel" value={address} onChange={ev => setAddress(ev.target.value)} required/>
+                        <input type="text" value={address} onChange={ev => setAddress(ev.target.value)} required/>
                     </div>
                 )}
             </div>
