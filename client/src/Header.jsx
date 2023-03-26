@@ -24,7 +24,6 @@ export default function Head() {
                     <Link to={'/'} className="text-sm mt-14 flex justify-around md:text-2xl lg:text-2xl lg:mt-5">Choose Your Favourite Category</Link>
                     <Link to={'/anime'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Anime</Link>
                     <Link to={'/CyberPunk'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Cyberpunk</Link>
-                    <Link to={'/Aesthetic'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Aesthetic</Link>
                     <Link to={'/Cars'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Cars</Link>
                     <Link to={'/Games'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Games</Link>
                     <Link to={'/Motivational'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Motivational</Link>

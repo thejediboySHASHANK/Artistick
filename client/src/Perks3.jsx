@@ -20,10 +20,6 @@ export default function Perks3({selected, onChange}) {
                 <span>Cyberpunk</span>
             </label>
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-                <input type="checkbox" checked={selected.includes("Aesthetic | ")} name="Aesthetic | " onChange={handleCbClick} />
-                <span>Aesthetic</span>
-            </label>
-            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                 <input type="checkbox" checked={selected.includes("Cars | ")} name="Cars | " onChange={handleCbClick} />
                 <span>Cars</span>
             </label>
