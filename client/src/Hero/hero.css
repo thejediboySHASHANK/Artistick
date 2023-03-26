@@ -72,13 +72,13 @@
 
 @media only screen and (max-width: 550px) {
     .side {
-        height: 55vh;
+        height: 30vh;
     }
     .title {
-        margin: 10vw 5vw;
+        margin: 10vw 1vw;
     }
     .spacing {
-        margin-top: 60vh;
+        margin-top: 32.5vh;
     }
 }
 
