@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import axios from "axios"
 import { UserContext } from "../UserContext";
 import {useLocation} from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -15,11 +16,19 @@ export default function LoginPage() {
         try {
             const {data} = await axios.post('/login', { email, password })
             setUser(data);
-            alert('Login Successful')
+            Swal.fire(
+                'Good job!',
+                'Login Successful',
+                'success'
+            )
             setRedirect(true)
         } catch (e) {
             console.log (e);
-            alert('Login Failed')
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: e.response.data
+            })
         }
     }
 

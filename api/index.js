@@ -112,7 +112,7 @@ app.post('/api/login', async (req, res) => {
                 res.cookie('token', token).json(userDoc)
             })
         } else {
-            res.status(422).json('pass not Ok')
+            res.status(422).json('Password is not correct')
         }
     } else {
         res.json('not found');

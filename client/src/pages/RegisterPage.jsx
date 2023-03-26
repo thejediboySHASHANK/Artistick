@@ -1,12 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import axios from "axios"
+import Swal from "sweetalert2";
+import {useNavigate} from "react-router-dom";
 
 export default function RegisterPage() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const navigate = useNavigate()
     async function RegisterUser(ev) {
         ev.preventDefault();
         try {
@@ -15,10 +17,19 @@ export default function RegisterPage() {
                 email,
                 password
             })
-            alert('Registration Successful. Now you can login')
+            Swal.fire(
+                'Good job!',
+                'You can now login!',
+                'success'
+            )
+            navigate('/login')
 
         } catch (e) {
-            alert('Registration failed. Please try again later')
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: {e}
+            })
         }
 
     }
