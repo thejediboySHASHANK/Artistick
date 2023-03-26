@@ -35,7 +35,8 @@ app.use(cookieParser())
 app.use('/api/uploads', express.static(__dirname + '/uploads'))
 app.use(cors({
     credentials: true,
-    origin: ['http://10.6.129.90:5173', 'localhost:5173'],
+    origin: ['http://10.6.129.90:5173', 'localhost:5173', 'https://artistick-git-main-thejediboyshashank.vercel.app/',
+    'https://artistick-lcea3814p-thejediboyshashank.vercel.app/', 'https://artistick.vercel.app/'],
     // origin: 'http://192.168.237.65:5173',
 
     // origin: '*',
