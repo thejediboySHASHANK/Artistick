@@ -44,6 +44,10 @@ export default function Perks3({selected, onChange}) {
                 <span>K-Pop_K-Drama</span>
             </label>
             <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
+                <input type="checkbox" checked={selected.includes("Games | ")} name="Games | " onChange={handleCbClick} />
+                <span>Games</span>
+            </label>
+            <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
                 <input type="checkbox" checked={selected.includes("Others | ")} name="Others | " onChange={handleCbClick} />
                 <span>Others</span>
             </label>
