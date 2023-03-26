@@ -73,12 +73,12 @@ function getUserDataFromReq(req) {
         })
     })
 }
-app.get('/api/test', (req, res) => {
+app.get('/API/test', (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     res.json('test ok')
 });
 
-app.post('/api/register', async (req, res) => {
+app.post('/API/register', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {name, email, password} = req.body;
 
@@ -96,7 +96,7 @@ app.post('/api/register', async (req, res) => {
 
 })
 
-app.post('/api/login', async (req, res) => {
+app.post('/API/login', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {email, password} = req.body;
     const userDoc = await User.findOne({email}).maxTimeMS(30000);
@@ -118,7 +118,7 @@ app.post('/api/login', async (req, res) => {
     }
 })
 
-app.get('/api/profile', (req, res) => {
+app.get('/API/profile', (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {token} = req.cookies;
     if (token) {
@@ -132,12 +132,12 @@ app.get('/api/profile', (req, res) => {
     }
 })
 
-app.post('/api/logout', (req, res) => {
+app.post('/API/logout', (req, res) => {
     res.cookie('token', '').json(true);
 })
 
 
-app.post('/api/upload-by-link', async (req, res) => {
+app.post('/API/upload-by-link', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {link} = req.body
     const newName = 'photo' + Date.now() + '.jpg'
@@ -150,7 +150,7 @@ app.post('/api/upload-by-link', async (req, res) => {
 })
 
 const photosMiddleware = multer({dest: '/tmp'})
-app.post('/api/upload', photosMiddleware.array('photos', 100), async (req, res) => {
+app.post('/API/upload', photosMiddleware.array('photos', 100), async (req, res) => {
     const uploadedFiles = []
     for (let i = 0; i < req.files.length; i++) {
         const {path, originalname, mimetype} = req.files[i]
@@ -160,7 +160,7 @@ app.post('/api/upload', photosMiddleware.array('photos', 100), async (req, res) 
     res.json(uploadedFiles)
 })
 
-app.post('/api/places', (req, res) => {
+app.post('/API/places', (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {token} = req.cookies
     const {
@@ -181,7 +181,7 @@ app.post('/api/places', (req, res) => {
 
 })
 
-app.get('/api/user-designs', (req, res) => {
+app.get('/API/user-designs', (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {token} = req.cookies
     jwt.verify(token, jwtSecret, {}, async (err, userData) => {
@@ -194,12 +194,12 @@ app.get('/api/user-designs', (req, res) => {
 //     const {id} = req.params
 //     res.json(await Place.find(id))
 // })
-app.get('/api/places/:id', async (req, res) => {
+app.get('/API/places/:id', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {id} = req.params
     res.json(await Place.findById(id))
 })
-app.put('/api/places', async (req, res) => {
+app.put('/API/places', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {token} = req.cookies
     const {
@@ -221,7 +221,7 @@ app.put('/api/places', async (req, res) => {
     })
 })
 
-app.put('/api/places/:id/views', async (req, res) => {
+app.put('/API/places/:id/views', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const placeId = req.params.id;
 
@@ -235,7 +235,7 @@ app.put('/api/places/:id/views', async (req, res) => {
         res.sendStatus(500);
     }
 });
-app.put ('/api/places/:id/sales', async (req, res) => {
+app.put ('/API/places/:id/sales', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const productId = req.params.id
     const {sales} = req.body
@@ -250,11 +250,11 @@ app.put ('/api/places/:id/sales', async (req, res) => {
     }
 })
 
-app.get('/api/places', async (req, res) => {
+app.get('/API/places', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     res.json(await Place.find({visibility: 'yes'}))
 })
-app.get ('/api/places/cat/:category', async (req, res) => {
+app.get ('/API/places/cat/:category', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {category} = req.params
     const regex = new RegExp(category, 'i');
@@ -262,7 +262,7 @@ app.get ('/api/places/cat/:category', async (req, res) => {
     res.json(places);
 })
 
-app.post('/api/orders', async (req, res) => {
+app.post('/API/orders', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const userData = await getUserDataFromReq(req)
     const {
@@ -276,7 +276,7 @@ app.post('/api/orders', async (req, res) => {
         throw err;
     })
 })
-app.get('/api/orders', async (req, res) => {
+app.get('/API/orders', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const userData = await getUserDataFromReq(req)
     res.json(await Booking.find({user:userData.id}).populate('design'))
