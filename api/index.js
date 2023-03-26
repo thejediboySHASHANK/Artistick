@@ -112,10 +112,10 @@ app.post('/api/login', async (req, res) => {
                 res.cookie('token', token).json(userDoc)
             })
         } else {
-            res.status(422).json('Password is not correct')
+            res.status(422).json('Sorry, the password you entered is incorrect. Please try again.')
         }
     } else {
-        res.json('not found');
+        res.status(422).json('No account found for that email. Please double-check or create a new account.');
     }
 })
 
@@ -256,7 +256,7 @@ app.get('/api/places/cat/:category', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {category} = req.params
     const regex = new RegExp(category, 'i');
-    const places = await Place.find({extraInfo: regex});
+    const places = await Place.find({extraInfo: regex, visibility: 'yes'});
     res.json(places);
 })
 

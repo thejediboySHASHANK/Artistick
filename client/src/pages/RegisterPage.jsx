@@ -28,7 +28,7 @@ export default function RegisterPage() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: {e}
+                text: e
             })
         }
 
