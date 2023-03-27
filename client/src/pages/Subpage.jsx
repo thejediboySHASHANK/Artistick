@@ -38,7 +38,9 @@ export default function SubPage() {
 
             </h2>
             <div className="mt-6 grid gap-x-6 gap-y-8 grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4">
-                {designs.length > 0 && designs.map(design => (
+                {designs.length > 0 && designs
+                    .sort((a, b) => (0.6*b.views+0.4*b.sales)-(0.6*a.views+0.4*a.sales))
+                    .map(design => (
                     <Link to={'/design/'+design._id}>
                         <div className="bg-gray-300 mb-2 rounded-2xl">
                             {design.photos?.[0] && (
