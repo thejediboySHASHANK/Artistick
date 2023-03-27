@@ -268,8 +268,6 @@ app.get('/api/search/:query', async (req, res) => {
 
     if (places.length === 0) {
         places = await Place.find({ extraInfo: { $regex: query, $options: 'i' }, visibility: 'yes' });
-    } else {
-        places = 'Does not exist'
     }
     res.json(places);
 });
