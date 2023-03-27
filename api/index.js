@@ -260,6 +260,20 @@ app.get('/api/places/cat/:category', async (req, res) => {
     res.json(places);
 })
 
+app.get('/api/search/:query', async (req, res) => {
+    mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
+    const { query } = req.params;
+    const regex = new RegExp(query, 'i');
+    let places = await Place.find({ title: { $regex: regex }, visibility: 'yes' });
+
+    if (places.length === 0) {
+        places = await Place.find({ extraInfo: { $regex: query, $options: 'i' }, visibility: 'yes' });
+    } else {
+        places = 'Does not exist'
+    }
+    res.json(places);
+});
+
 app.post('/api/orders', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const userData = await getUserDataFromReq(req)

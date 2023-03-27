@@ -18,6 +18,7 @@ import Darkmode from "darkmode-js/src";
 import Cart from "./Cart/Cart.jsx";
 import {useEffect} from "react";
 import SubPage from "./pages/Subpage.jsx";
+import SearchPage from "./pages/SearchPage.jsx";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL
 axios.defaults.withCredentials = true
@@ -54,6 +55,7 @@ function App() {
                     <Route path="/account/places/:id" element={<PlacesFormPage/>}/>
                     <Route path="/design/:id" element={<PlacePage/>}/>
                     <Route path="/:category" element={<SubPage/>}/>
+                    <Route path="/search/:query" element={<SearchPage/>}/>
                     <Route path="/account/orders" element={<OrdersPage/>}/>
                     <Route path="/account/orders/:id" element={<OrderPage/>}/>
                     <Route path="/beta" element={<HeroAnimation/>}/>

@@ -6,7 +6,7 @@ import "./Responsive/Header.css"
 export default function Head() {
     const {user} = useContext(UserContext);
     const [searchBar, setSearchBar] = useState(false)
-
+    const [query, setQuery] = useState('')
     if (searchBar) {
         return (
             <div className="bg-gray-100 p-4 rounded-2xl md:p-28 lg:p-28">
@@ -20,7 +20,11 @@ export default function Head() {
                     </svg>
                     Close Search
                 </button>
+                <div className="flex justify-around gap-10 mt-16 md:-mt-10">
+                    <input type={'text'} value={query} onChange={ev => setQuery(ev.target.value)} className="border border-gray-500"/>
+                    <Link to={'/search/'+query}><button className="rounded-2xl text-sm p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Search</button></Link>
 
+                </div>
                     <Link to={'/'} className="text-sm mt-14 flex justify-around md:text-2xl lg:text-2xl lg:mt-5">Choose Your Favourite Category</Link>
                     <Link to={'/anime'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Anime</Link>
                     <Link to={'/CyberPunk'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Cyberpunk</Link>
