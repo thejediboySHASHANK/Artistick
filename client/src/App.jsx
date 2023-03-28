@@ -19,6 +19,7 @@ import Cart from "./Cart/Cart.jsx";
 import {useEffect} from "react";
 import SubPage from "./pages/Subpage.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
+import GoogleOathLogin from "./GoogleOath/GoogleOathLogin.jsx";
 
 axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL
 axios.defaults.withCredentials = true
@@ -60,6 +61,7 @@ function App() {
                     <Route path="/account/orders/:id" element={<OrderPage/>}/>
                     <Route path="/beta" element={<HeroAnimation/>}/>
                     <Route path="/google" element={<GoogleOath/>}/>
+                    <Route path="/googlelog" element={<GoogleOathLogin/>}/>
                     <Route path="/cart" element={<Cart/>}/>
                 </Route>
             </Routes>

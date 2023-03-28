@@ -1,46 +1,40 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import jwt_decode from "jwt-decode"
 import axios from "axios";
 import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
-import GoogleOathLogin from "./GoogleOathLogin.jsx";
+import {UserContext} from "../UserContext.jsx";
 
-export default function GoogleOath() {
-    const [name, setName] = useState('')
+export default function GoogleOathLogin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [redirect, setRedirect] = useState(false);
+    const {setUser} = useContext(UserContext);
     const navigate = useNavigate()
     function handleCallbackResponse (response) {
         console.log("Encoded JWT ID token : " + response.credential)
         let userObject = jwt_decode(response.credential)
         console.log (userObject)
-        setName(userObject.given_name+ ' ' + userObject.family_name)
         setEmail(userObject.email)
         setPassword(userObject.given_name+ userObject.email + userObject.family_name)
-        RegisterUser()
-        async function RegisterUser() {
+        handleLoginSubmit()
+        async function handleLoginSubmit() {
             try {
-                await axios.post('/register', {
-                    name,
-                    email,
-                    password
-                })
+                const {data} = await axios.post('/login', { email, password })
+                setUser(data);
                 Swal.fire(
                     'Good job!',
-                    'You can now login!',
+                    'Login Successful',
                     'success'
                 )
-                GoogleOathLogin()
-
+                navigate('/')
             } catch (e) {
+                console.log (e);
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: e
+                    text: e.response.data
                 })
             }
-
         }
 
     }
