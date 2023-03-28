@@ -31,7 +31,7 @@ export default function GoogleOath() {
                     'You can now login!',
                     'success'
                 )
-                GoogleOathLogin()
+                GoogleOathLogin({email, password})
 
             } catch (e) {
                 Swal.fire({

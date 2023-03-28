@@ -5,17 +5,13 @@ import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../UserContext.jsx";
 
-export default function GoogleOathLogin() {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+export default function GoogleOathLogin({email, password}) {
     const {setUser} = useContext(UserContext);
     const navigate = useNavigate()
     function handleCallbackResponse (response) {
         console.log("Encoded JWT ID token : " + response.credential)
         let userObject = jwt_decode(response.credential)
         console.log (userObject)
-        setEmail(userObject.email)
-        setPassword(userObject.given_name+ userObject.email + userObject.family_name)
         handleLoginSubmit()
         async function handleLoginSubmit() {
             try {
@@ -36,7 +32,6 @@ export default function GoogleOathLogin() {
                 })
             }
         }
-
     }
     console.log (password)
     useEffect(() => {
@@ -54,9 +49,7 @@ export default function GoogleOathLogin() {
 
     return (
         <div className="App">
-            <div id="signInDiv">
-            </div>
-
+            <div id="signInDiv"></div>
         </div>
     )
 }
