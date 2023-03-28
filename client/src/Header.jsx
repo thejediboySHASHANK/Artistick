@@ -22,19 +22,19 @@ export default function Head() {
                 </button>
                 <div className="flex justify-around gap-10 mt-16 md:-mt-10">
                     <input type={'text'} value={query} onChange={ev => setQuery(ev.target.value)} className="border border-gray-500"/>
-                    <Link to={'/search/'+query}><button className="rounded-2xl text-sm p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Search</button></Link>
+                    <Link onClick={() => setSearchBar(false)} to={'/search/'+query}><button className="rounded-2xl text-sm p-4 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Search</button></Link>
 
                 </div>
-                    <Link to={'/'} className="text-sm mt-14 flex justify-around md:text-2xl lg:text-2xl lg:mt-5">Choose Your Favourite Category</Link>
-                    <Link to={'/anime'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Anime</Link>
-                    <Link to={'/CyberPunk'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Cyberpunk</Link>
-                    <Link to={'/Cars'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Cars</Link>
-                    <Link to={'/Games'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Games</Link>
-                    <Link to={'/Motivational'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Motivational</Link>
-                    <Link to={'/Sports & Fitness'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Sports & Fitness</Link>
-                    <Link to={'/Movie'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Movie</Link>
-                    <Link to={'/K-Pop_K-Drama'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">K-Pop / K-Drama</Link>
-                    <Link to={'/Others'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Others</Link>
+                    <div className="text-sm mt-14 flex justify-around md:text-2xl lg:text-2xl lg:mt-5">Choose Your Favourite Category</div>
+                    <Link onClick={() => setSearchBar(false)} to={'/anime'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Anime</Link>
+                    <Link onClick={() => setSearchBar(false)} to={'/CyberPunk'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Cyberpunk</Link>
+                    <Link onClick={() => setSearchBar(false)} to={'/Cars'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Cars</Link>
+                    <Link onClick={() => setSearchBar(false)} to={'/Games'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Games</Link>
+                    <Link onClick={() => setSearchBar(false)} to={'/Motivational'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Motivational</Link>
+                    <Link onClick={() => setSearchBar(false)} to={'/Sports & Fitness'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Sports & Fitness</Link>
+                    <Link onClick={() => setSearchBar(false)} to={'/Movie'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Movie</Link>
+                    <Link onClick={() => setSearchBar(false)} to={'/K-Pop_K-Drama'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">K-Pop / K-Drama</Link>
+                    <Link onClick={() => setSearchBar(false)} to={'/Others'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Others</Link>
 
             </div>
 

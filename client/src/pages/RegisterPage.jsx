@@ -3,6 +3,7 @@ import {Link, Navigate} from "react-router-dom";
 import axios from "axios"
 import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
+import GoogleOath from "../GoogleOath/GoogleOath.jsx";
 
 export default function RegisterPage() {
     const [name, setName] = useState('')
@@ -35,9 +36,15 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="mt-4 grow flex items-center justify-around">
+        <div className="mt-14 grow flex items-center justify-around">
             <div className="mb-64">
-                <h1 className="text-4xl text-center mb-4">Register</h1>
+                <div className="grow flex items-center justify-around mb-10">
+                    <GoogleOath />
+                </div>
+                <div className="grow flex items-center justify-around">
+                    <span className="text-xl">or</span>
+                </div>
+                <h1 className="text-4xl text-center mb-4 mt-10">Register</h1>
                 <form className="max-w-xl mx-auto" onSubmit={RegisterUser}>
                     <input type="text"
                         placeholder="Your Name"

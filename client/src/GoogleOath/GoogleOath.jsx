@@ -1,17 +1,48 @@
 import {useEffect, useState} from "react";
 import jwt_decode from "jwt-decode"
+import axios from "axios";
+import Swal from "sweetalert2";
+import {useNavigate} from "react-router-dom";
 
 export default function GoogleOath() {
-    const [Email, setEmail] = useState('');
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
+    const navigate = useNavigate()
     function handleCallbackResponse (response) {
         console.log("Encoded JWT ID token : " + response.credential)
         let userObject = jwt_decode(response.credential)
         console.log (userObject)
+        setName(userObject.given_name+ ' ' + userObject.family_name)
         setEmail(userObject.email)
-        console.log (Email)
+        setPassword(userObject.given_name+ userObject.email + userObject.family_name)
+        RegisterUser()
+        async function RegisterUser() {
+            try {
+                await axios.post('/register', {
+                    name,
+                    email,
+                    password
+                })
+                Swal.fire(
+                    'Good job!',
+                    'You can now login!',
+                    'success'
+                )
+                navigate('/login')
+
+            } catch (e) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: e
+                })
+            }
+
+        }
     }
+    console.log (password)
     useEffect(() => {
         /*global google*/
         google.accounts.id.initialize({
@@ -21,13 +52,15 @@ export default function GoogleOath() {
 
         google.accounts.id.renderButton(
             document.getElementById("signInDiv"),
-            {theme: "outline", size: "large"}
+            {theme: "outline", size: "large", customSize: "large"}
         )
     }, [])
 
     return (
-        <div>
-            <div id="signInDiv"></div>
+        <div className="App">
+            <div id="signInDiv">
+            </div>
+
         </div>
     )
 }
