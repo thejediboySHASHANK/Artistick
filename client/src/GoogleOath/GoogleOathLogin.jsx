@@ -6,7 +6,10 @@ import {useNavigate} from "react-router-dom";
 import {UserContext} from "../UserContext.jsx";
 
 export default function GoogleOathLogin({email, password}) {
-    console.log ({email, password})
+    console.log ({
+        email : email,
+        password: password
+    })
     const {setUser} = useContext(UserContext);
     const navigate = useNavigate()
     function handleCallbackResponse (response) {
