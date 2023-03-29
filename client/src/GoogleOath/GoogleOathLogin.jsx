@@ -11,17 +11,15 @@ export default function GoogleOathLogin() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     console.log (email, password)
-    function handleCallbackResponse (response) {
-        console.log("Encoded JWT ID token : " + response.credential)
-        let userObject = jwt_decode(response.credential)
-        console.log (userObject)
-        setEmail(userObject.email)
-        setPassword(userObject.given_name+ userObject.email + userObject.family_name)
-        handleLoginSubmit()
-    }
-    async function handleLoginSubmit() {
+    async function handleCallbackResponse (response) {
         try {
-            const {data} = await axios.post('/login', { email, password })
+            console.log("Encoded JWT ID token : " + response.credential)
+            let userObject = jwt_decode(response.credential)
+            console.log (userObject)
+            setEmail(userObject.email)
+            setPassword(userObject.given_name+ userObject.email + userObject.family_name)
+
+            const {data} = await axios.post('/login', { email:(userObject.email), password:(userObject.given_name+ userObject.email + userObject.family_name) })
             setUser(data);
             Swal.fire(
                 'Good job!',
@@ -38,6 +36,7 @@ export default function GoogleOathLogin() {
             })
         }
     }
+
     console.log (password)
     useEffect(() => {
         /*global google*/

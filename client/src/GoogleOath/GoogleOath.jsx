@@ -6,27 +6,24 @@ import {useNavigate} from "react-router-dom";
 import GoogleOathLogin from "./GoogleOathLogin.jsx";
 
 export default function GoogleOath() {
-    const [name, setName] = useState('')
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [names, setName] = useState('')
+    const [emails, setEmail] = useState('');
+    const [passwords, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
     const navigate = useNavigate()
-    function handleCallbackResponse (response) {
-        console.log("Encoded JWT ID token : " + response.credential)
-        let userObject = jwt_decode(response.credential)
-        console.log (userObject)
-        setName(userObject.given_name+ ' ' + userObject.family_name)
-        setEmail(userObject.email)
-        setPassword(userObject.given_name+ userObject.email + userObject.family_name)
-        RegisterUser()
-
-    }
-    async function RegisterUser() {
+    async function handleCallbackResponse (response) {
         try {
+            console.log("Encoded JWT ID token : " + response.credential)
+            let userObject = jwt_decode(response.credential)
+            console.log (userObject)
+            setName(userObject.given_name+ ' ' + userObject.family_name)
+            setEmail(userObject.email)
+            setPassword(userObject.given_name+ userObject.email + userObject.family_name)
+
             await axios.post('/register', {
-                name,
-                email,
-                password
+                name:(userObject.given_name+ ' ' + userObject.family_name),
+                email:(userObject.email),
+                password:(userObject.given_name+ userObject.email + userObject.family_name)
             })
             Swal.fire(
                 'Good job!',
@@ -34,7 +31,6 @@ export default function GoogleOath() {
                 'success'
             )
             navigate('/login')
-
         } catch (e) {
             Swal.fire({
                 icon: 'error',
@@ -42,9 +38,9 @@ export default function GoogleOath() {
                 text: e
             })
         }
-
     }
-    console.log (password)
+
+    console.log (passwords)
     useEffect(() => {
         /*global google*/
         google.accounts.id.initialize({
