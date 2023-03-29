@@ -18,24 +18,24 @@ export default function GoogleOathLogin() {
         setEmail(userObject.email)
         setPassword(userObject.given_name+ userObject.email + userObject.family_name)
         handleLoginSubmit()
-        async function handleLoginSubmit() {
-            try {
-                const {data} = await axios.post('/login', { email, password })
-                setUser(data);
-                Swal.fire(
-                    'Good job!',
-                    'Login Successful',
-                    'success'
-                )
-                navigate('/')
-            } catch (e) {
-                console.log (e);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: e.response.data
-                })
-            }
+    }
+    async function handleLoginSubmit() {
+        try {
+            const {data} = await axios.post('/login', { email, password })
+            setUser(data);
+            Swal.fire(
+                'Good job!',
+                'Login Successful',
+                'success'
+            )
+            navigate('/')
+        } catch (e) {
+            console.log (e);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: e.response.data
+            })
         }
     }
     console.log (password)

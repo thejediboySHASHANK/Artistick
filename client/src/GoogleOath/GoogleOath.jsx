@@ -19,28 +19,28 @@ export default function GoogleOath() {
         setEmail(userObject.email)
         setPassword(userObject.given_name+ userObject.email + userObject.family_name)
         RegisterUser()
-        async function RegisterUser() {
-            try {
-                await axios.post('/register', {
-                    name,
-                    email,
-                    password
-                })
-                Swal.fire(
-                    'Good job!',
-                    'You can now login!',
-                    'success'
-                )
-                navigate('/login')
 
-            } catch (e) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: e
-                })
-            }
+    }
+    async function RegisterUser() {
+        try {
+            await axios.post('/register', {
+                name,
+                email,
+                password
+            })
+            Swal.fire(
+                'Good job!',
+                'You can now login!',
+                'success'
+            )
+            navigate('/login')
 
+        } catch (e) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: e
+            })
         }
 
     }
