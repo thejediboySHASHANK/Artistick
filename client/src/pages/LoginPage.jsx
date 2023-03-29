@@ -44,7 +44,10 @@ export default function LoginPage() {
                 <div className="grow flex items-center justify-around mb-10">
                     <GoogleOathLogin />
                 </div>
-                <h1 className="text-4xl text-center mb-4">Login</h1>
+                <div className="grow flex items-center justify-around">
+                    <span className="text-xl">or</span>
+                </div>
+                <h1 className="text-4xl text-center mb-4 mt-10">Login</h1>
                 <form className="max-w-xl mx-auto" onSubmit={handleLoginSubmit}>
                     <input type="email"
                         placeholder="your@email.com"
