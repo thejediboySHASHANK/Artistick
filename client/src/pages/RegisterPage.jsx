@@ -38,12 +38,12 @@ export default function RegisterPage() {
     return (
         <div className="mt-14 grow flex items-center justify-around">
             <div className="mb-64">
-                {/*<div className="grow flex items-center justify-around mb-10">*/}
-                {/*    <GoogleOath />*/}
-                {/*</div>*/}
-                {/*<div className="grow flex items-center justify-around">*/}
-                {/*    <span className="text-xl">or</span>*/}
-                {/*</div>*/}
+                <div className="grow flex items-center justify-around mb-10">
+                    <GoogleOath />
+                </div>
+                <div className="grow flex items-center justify-around">
+                    <span className="text-xl">or</span>
+                </div>
                 <h1 className="text-4xl text-center mb-4 mt-10">Register</h1>
                 <form className="max-w-xl mx-auto" onSubmit={RegisterUser}>
                     <input type="text"

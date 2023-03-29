@@ -5,17 +5,18 @@ import Swal from "sweetalert2";
 import {useNavigate} from "react-router-dom";
 import {UserContext} from "../UserContext.jsx";
 
-export default function GoogleOathLogin({email, password}) {
-    console.log ({
-        email : email,
-        password: password
-    })
+export default function GoogleOathLogin() {
     const {setUser} = useContext(UserContext);
     const navigate = useNavigate()
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    console.log (email, password)
     function handleCallbackResponse (response) {
         console.log("Encoded JWT ID token : " + response.credential)
         let userObject = jwt_decode(response.credential)
         console.log (userObject)
+        setEmail(userObject.email)
+        setPassword(userObject.given_name+ userObject.email + userObject.family_name)
         handleLoginSubmit()
         async function handleLoginSubmit() {
             try {

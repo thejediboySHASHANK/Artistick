@@ -31,7 +31,7 @@ export default function GoogleOath() {
                     'You can now login!',
                     'success'
                 )
-                GoogleOathLogin({email, password})
+                navigate('/login')
 
             } catch (e) {
                 Swal.fire({
@@ -62,7 +62,6 @@ export default function GoogleOath() {
         <div className="App">
             <div id="signInDiv">
             </div>
-
         </div>
     )
 }

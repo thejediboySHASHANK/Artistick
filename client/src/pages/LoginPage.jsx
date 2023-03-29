@@ -4,6 +4,8 @@ import axios from "axios"
 import { UserContext } from "../UserContext";
 import {useLocation} from "react-router-dom";
 import Swal from "sweetalert2";
+import GoogleOath from "../GoogleOath/GoogleOath.jsx";
+import GoogleOathLogin from "../GoogleOath/GoogleOathLogin.jsx";
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -39,6 +41,9 @@ export default function LoginPage() {
     return (
         <div className="mt-4 grow flex items-center justify-around">
             <div className="mb-64">
+                <div className="grow flex items-center justify-around mb-10">
+                    <GoogleOathLogin />
+                </div>
                 <h1 className="text-4xl text-center mb-4">Login</h1>
                 <form className="max-w-xl mx-auto" onSubmit={handleLoginSubmit}>
                     <input type="email"
