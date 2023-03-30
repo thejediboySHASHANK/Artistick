@@ -5,9 +5,8 @@ import axios from "axios";
 import HeroAnimation from "../Hero/HeroAnimation.jsx";
 import Cart from "../Cart/Cart.jsx";
 import Image from "../Image.jsx";
-import {useInView} from "react-intersection-observer";
 import Loading from "../Components/Loading.jsx";
-// import {options} from "axios";
+
 
 export default function IndexPage() {
     const [designs, setDesigns] = useState([])
