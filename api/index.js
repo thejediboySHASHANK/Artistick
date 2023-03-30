@@ -257,13 +257,45 @@ app.put('/api/places/:id/sales', async (req, res) => {
 //     res.json(await Place.find({visibility: 'yes'}))
 // })
 
+// app.get('/api/places/scroll/:value', async (req, res) => {
+//     const {value} = req.params
+//     const skipCount = (value - 1) * 10;
+//     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
+//     res.json(await Place.find({visibility: 'yes'}).skip(skipCount).limit(10).sort({views:-1}).sort({sales:-1}))
+//     // res.json(await Place.aggregate(pipeline));
+// })
+
 app.get('/api/places/scroll/:value', async (req, res) => {
     const {value} = req.params
     const skipCount = (value - 1) * 10;
+    const pipeline = [
+        { $match: { visibility: 'yes' } },
+        {
+            $project: {
+                _id: 1,
+                owner: 1,
+                title: 1,
+                address: 1,
+                photos: 1,
+                description: 1,
+                perks: 1,
+                extraInfo: 1,
+                visibility: 1,
+                price: 1,
+                views: 1,
+                sales: 1,
+                rank: 1,
+                score: { $add: [{ $multiply: ['$views', 0.6] }, { $multiply: ['$sales', 0.4] }] }
+            }
+        },
+        { $sort: { score: -1 } },
+        { $skip: skipCount },
+        { $limit: 10 }
+    ];
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
-    res.json(await Place.find({visibility: 'yes'}).skip(skipCount).limit(10).sort({views:-1}).sort({sales:-1}))
-    // res.json(await Place.aggregate(pipeline));
+    res.json(await Place.aggregate(pipeline));
 })
+
 
 
 
