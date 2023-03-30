@@ -35,7 +35,7 @@ export default function GoogleOath() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: e
+                text: 'Account Already Exists, Please Login'
             })
         }
     }

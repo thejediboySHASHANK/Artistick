@@ -6,18 +6,37 @@ import HeroAnimation from "../Hero/HeroAnimation.jsx";
 import Cart from "../Cart/Cart.jsx";
 import Image from "../Image.jsx";
 import {useInView} from "react-intersection-observer";
+import Loading from "../Components/Loading.jsx";
 // import {options} from "axios";
 
 export default function IndexPage() {
     const [designs, setDesigns] = useState([])
     const [cartItems, setCartItems] = useState([])
     const [value, setValue] = useState(1)
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        axios.get(`/places`).then(res => {
+        axios.get(`/places/scroll/${value}`).then(res => {
             setDesigns([...designs, ...res.data])
-            console.log (designs)
+            setLoading(false)
         })
+
+    }, [value])
+
+    const handleInfiniteScroll = async () => {
+        try {
+            if (window.innerHeight + document.documentElement.scrollTop + 1 >= document.documentElement.scrollHeight) {
+                setLoading(true)
+                setValue((prev) => prev + 1)
+            }
+        } catch (error) {
+            console.log (error)
+        }
+    }
+
+    useEffect(() => {
+        window.addEventListener("scroll", handleInfiniteScroll)
+        return () => window.removeEventListener("scroll", handleInfiniteScroll)
     }, [])
 
     function handleCartItems(ev, value) {
@@ -53,7 +72,7 @@ export default function IndexPage() {
                 style={{marginBottom: '40px'}}
             >
                 {designs.length > 0 && designs
-                    .sort((a, b) => (0.6*b.views+0.4*b.sales)-(0.6*a.views+0.4*a.sales))
+                    // .sort((a, b) => (0.6*b.views+0.4*b.sales)-(0.6*a.views+0.4*a.sales))
                     .map(design => (
                         <Link to={'/design/' + design._id}>
                             <div className="bg-gray-300 mb-2 rounded-2xl">
@@ -78,6 +97,8 @@ export default function IndexPage() {
                         </Link>
                     ))}
             </div>
+            <Loading />
+            <div className="flex justify-center rounded-2xl bg-gray-100 mb-4 p-2 md:text-md md:-p-2">Thanks for scrolling through our posters! Keep an eye out for new releases and contact us if you need help finding the perfect one.</div>
         </div>
 
     );
