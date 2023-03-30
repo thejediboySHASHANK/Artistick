@@ -13,6 +13,10 @@ const multer = require('multer')
 const fs = require('fs')
 const mime = require('mime-types')
 
+
+
+
+
 require("dotenv").config()
 const app = express()
 
@@ -257,8 +261,12 @@ app.get('/api/places/scroll/:value', async (req, res) => {
     const {value} = req.params
     const skipCount = (value - 1) * 10;
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
-    res.json(await Place.find({visibility: 'yes'}).skip(skipCount).limit(10));
+    res.json(await Place.find({visibility: 'yes'}).skip(skipCount).limit(10).sort({views:-1}).sort({sales:-1}))
+    // res.json(await Place.aggregate(pipeline));
 })
+
+
+
 
 app.get('/api/places/cat/:category', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
