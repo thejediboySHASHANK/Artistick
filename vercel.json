@@ -7,11 +7,5 @@
       "source": "/api/(.*)",
       "destination": "/api/index.js"
     }
-  ],
-  "routes": [
-    {
-      "src": "/[^.]+",
-      "dest": "/"
-    }
   ]
 }
