@@ -34,6 +34,7 @@ export default function Head() {
                     <Link onClick={() => setSearchBar(false)} to={'/Sports & Fitness'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Sports & Fitness</Link>
                     <Link onClick={() => setSearchBar(false)} to={'/Movie'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Movie</Link>
                     <Link onClick={() => setSearchBar(false)} to={'/K-Pop_K-Drama'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">K-Pop / K-Drama</Link>
+                    <Link onClick={() => setSearchBar(false)} to={'/Music | Music_Bands'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Music | Music_Bands</Link>
                     <Link onClick={() => setSearchBar(false)} to={'/Others'} className="flex justify-around mt-4 rounded-2xl text-lg p-2 bg-gray-300 hover:bg-black hover:text-white md:text-3xl lg:text-3xl">Others</Link>
 
             </div>

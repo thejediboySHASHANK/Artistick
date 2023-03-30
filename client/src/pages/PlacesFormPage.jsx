@@ -94,7 +94,7 @@ export default function PlacesFormPage() {
                 {preInput('Address', 'Please Enter your city/district')}
                 <input type="text" value={address} onChange={ev => setAddress(ev.target.value)} placeholder="city"/>
 
-                {preInput('Photos', 'more = better')}
+                {preInput('Photo', 'only one photo')}
                 <PhotosUploader addedPhotos={addedPhotos} onChange={setAddedPhotos}/>
 
                 {preInput('Visibility', 'Make it private, if you want to print private photos/posters. Public, if you want to participate in "earn-with-Artistick" program.')}
