@@ -5,7 +5,8 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "/api/index.js"
+      "destination": "/api/index.js",
+      "status": 200
     }
   ]
 }
