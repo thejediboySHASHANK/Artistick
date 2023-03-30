@@ -55,7 +55,7 @@ export default function SubPage() {
                                     <span className="">₹{design.price}</span>
                                 </div>
                                 <Link to={'/design/'+design._id} className="p-2">
-                                    <button onClick={(ev) => handleCartItems(ev, design._id)} className="primary p-2">Book Now</button>
+                                    <button className="primary p-2">Book Now</button>
                                 </Link>
                             </div>
                         </div>
