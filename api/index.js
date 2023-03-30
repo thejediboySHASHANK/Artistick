@@ -248,10 +248,18 @@ app.put('/api/places/:id/sales', async (req, res) => {
     }
 })
 
-app.get('/api/places', async (req, res) => {
+// app.get('/api/places', async (req, res) => {
+//     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
+//     res.json(await Place.find({visibility: 'yes'}))
+// })
+
+app.get('/api/places/scroll/:value', async (req, res) => {
+    const {value} = req.params
+    const skipCount = (value - 1) * 10;
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
-    res.json(await Place.find({visibility: 'yes'}))
+    res.json(await Place.find({visibility: 'yes'}).skip(skipCount).limit(10));
 })
+
 app.get('/api/places/cat/:category', async (req, res) => {
     mongoose.connect(process.env.MONGO_URL, {serverSelectionTimeoutMS: 30000});
     const {category} = req.params
