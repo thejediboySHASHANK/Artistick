@@ -42,7 +42,7 @@ export default function SubPage() {
                     .sort((a, b) => (0.6*b.views+0.4*b.sales)-(0.6*a.views+0.4*a.sales))
                     .map(design => (
                     <Link to={'/design/'+design._id}>
-                        <div className="bg-gray-300 mb-2 rounded-2xl">
+                        <div className="mb-2 rounded-2xl">
                             {design.photos?.[0] && (
                                 <Image className="rounded-2xl object-contain aspect-square"
                                      src={design.photos?.[0]} alt=''/>
