@@ -25,7 +25,12 @@ export default function OrdersPage() {
                             <PlaceImg place={order.design} />
                         </div>
                         <div className="py-3 grow">
-                            <h2 className="text-xl">{order.design.title}</h2>
+                            <div className="grid md:grid-cols-[2fr_1fr]">
+                                <h2 className="text-xl">{order.design.title}</h2>
+                                {/*<div></div>*/}
+                                <Link to={`/design/${order.design._id}`}><button className="bg-primary p-2 w-2/3 text-sm text-white rounded-2xl mt-2 md:w-3/4 md:-mt-1">Book Again</button></Link>
+                            </div>
+
                             <div className="border-t border-gray-300 mt-2 py-5">
                                 <div>
                                     Number Of Orders : {order.numberOfOrders} |
