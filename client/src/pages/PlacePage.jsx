@@ -46,7 +46,7 @@ export default function PlacePage() {
 
             <div className="bg-white mt-4 -mx-5 px-5 py-5 md:-mx-8 md:px-8 md:py-8 border-t">
                 <div>
-                    <h2 className="font-semibold text-2xl">Terms Of Condition : </h2>
+                    <h2 className="font-semibold text-2xl">Terms & Conditions : </h2>
                 </div>
                 <div className="mb-4 mt-2 text-sm text-gray-700 leading-5">Privacy Policy: We take your privacy
                     seriously and will never share your personal information with third parties. We only use your

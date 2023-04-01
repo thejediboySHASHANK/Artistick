@@ -15,6 +15,7 @@ export default function BookingWidget({design}) {
     const [deliveryStatus, setDeliveryStatus] = useState('Shipping')
     const [DateOfBooked, setDateOfBooked] = useState(new Date(new Date().getTime() - new Date().getTimezoneOffset()*60*1000))
     const Nav = useNavigate()
+    const [isBooking, setIsBooking] = useState(false)
     useEffect(() => {
         if (user) {
             setName(user.name)
@@ -22,6 +23,9 @@ export default function BookingWidget({design}) {
     }, [user])
 
     function Check () {
+        if (isBooking) {
+            return;
+        }
         Swal.fire({
             title: 'Confirm Booking?',
             text: "You won't be able to revert this! " +
@@ -48,7 +52,9 @@ export default function BookingWidget({design}) {
         })
     }
     async function bookThisDesign() {
+        setIsBooking(true)
         if (name === '') {
+            setIsBooking(false)
             Swal.fire({
                 icon: 'error',
                 title: 'Field Missing',
@@ -57,6 +63,7 @@ export default function BookingWidget({design}) {
             return;
         }
         if (phone === '') {
+            setIsBooking(false)
             Swal.fire({
                 icon: 'error',
                 title: 'Field Missing',
@@ -65,6 +72,7 @@ export default function BookingWidget({design}) {
             return;
         }
         if (address === ''){
+            setIsBooking(false)
             Swal.fire({
                 icon: 'error',
                 title: 'Field Missing',
@@ -114,10 +122,15 @@ export default function BookingWidget({design}) {
                     </div>
                 )}
             </div>
-            <button onClick={Check} className="primary my-2">
-                Book Now :
-                <span> ₹{numberOfOrders * design.price}</span>
+            {/*<button onClick={Check} className={`primary my-2 ${redirect ? 'opacity-50 cursor-not-allowed' : ''}`} disabled={isBooking}>*/}
+            {/*    {isBooking? "Booking..." : "Book Now"} : {" "}*/}
+            {/*    /!*Book Now :*!/*/}
+            {/*    <span> ₹{numberOfOrders * design.price}</span>*/}
+            {/*</button>*/}
+            <button onClick={Check} disabled={isBooking} className={`primary my-2 ${isBooking ? ' bg-gray-300 opacity-50 cursor-not-allowed' : ''}`}>
+                {isBooking ? 'Booking...' : 'Book Now'} : <span>₹{numberOfOrders * design.price}</span>
             </button>
+
         </div>
     )
 }
