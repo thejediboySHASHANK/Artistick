@@ -19,13 +19,15 @@ Welcome to our open-source eCommerce website that offers a web-to-print solution
 
 This project was built using the following technologies:
 
-1) HTML, CSS, and JavaScript for the front-end
+1) HTML, TailWindCSS, and JavaScript for the front-end
 
 2) React for building the user interface
 
 3) Node.js and Express.js for the back-end
 
 4) MongoDB for storing data
+
+5) Deployed on AWS E3 and Vercel Serverless platform
 
 
 ## Installation
