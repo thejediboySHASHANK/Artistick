@@ -4,7 +4,7 @@
 Welcome to our open-source eCommerce website that offers a web-to-print solution for selling posters online. Our website is perfect for designers or artists looking to showcase their work and earn a commission on sales.
 
 ## Features
-User authentication and registration system
+1) User authentication and registration system
 
 1) Intuitive poster design uploading interface
 
