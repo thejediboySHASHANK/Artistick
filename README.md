@@ -23,7 +23,7 @@ This project was built using the following technologies:
 
 2) React for building the user interface
 
-Node.js and Express.js for the back-end
+3) Node.js and Express.js for the back-end
 
 MongoDB for storing data
 
