@@ -10,7 +10,7 @@ Welcome to our open-source eCommerce website that offers a web-to-print solution
 
 3) Commission earning program based on the sales of your added posters
 
-3) Responsive design for optimal viewing on any device
+4) Responsive design for optimal viewing on any device
 
 4) Easy-to-use admin panel for managing uploaded posters and sales
 
