@@ -19,7 +19,7 @@ User authentication and registration system
 
 This project was built using the following technologies:
 
-HTML, CSS, and JavaScript for the front-end
+1) HTML, CSS, and JavaScript for the front-end
 
 React for building the user interface
 
