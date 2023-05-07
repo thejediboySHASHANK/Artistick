@@ -1,36 +1,47 @@
-# Artistick
 
-Web2Print Poster eCommerce Website
-This is an open-source eCommerce website that offers a web-to-print solution for selling posters online. This website is perfect for individuals or companies looking to start their own online poster business.
+# Artistick : Web2Print eCommerce Website
 
-The website features an intuitive user interface, allowing customers to easily browse through different poster designs, customize them according to their preferences, and place orders.
+Welcome to our open-source eCommerce website that offers a web-to-print solution for selling posters online. Our website is perfect for designers or artists looking to showcase their work and earn a commission on sales.
 
-Features
+## Features
 User authentication and registration system
-Intuitive poster design customization interface
-Multiple payment options including credit cards, PayPal, and more
-Secure and efficient checkout process
+
+Intuitive poster design uploading interface
+
+Commission earning program based on the sales of your added posters
+
 Responsive design for optimal viewing on any device
-Easy-to-use admin panel for managing products, orders, and customers
-Technologies Used
+
+Easy-to-use admin panel for managing uploaded posters and sales
+
+
+## Technologies Used
+
 This project was built using the following technologies:
 
 HTML, CSS, and JavaScript for the front-end
+
 React for building the user interface
+
 Node.js and Express.js for the back-end
+
 MongoDB for storing data
-Stripe for handling payments
-Installation
+
+
+## Installation
+
 To run this project locally, follow these steps:
 
-Clone the repository: git clone https://github.com/your-username/your-repo.git
-Install the necessary dependencies: npm install
-Start the development server: npm start
-Contributing
+1) Clone the repository: git clone https://github.com/thejediboySHASHANK/Artistick.git
+
+2) Install the necessary dependencies: npm install
+
+3) Start the development server: npm start
+
+## Contribution 
+
 Contributions to this project are always welcome. If you find a bug, or have an idea for an improvement, please open an issue or submit a pull request.
 
-License
-This project is licensed under the MIT License. See the LICENSE file for more information.
+## Contact 
 
-Contact
-If you have any questions or feedback, feel free to contact us at [your-email-address]. We'd love to hear from you!
+If you have any questions or feedback, feel free to contact us at shasnk2267@gmail.com. We'd love to hear from you!
