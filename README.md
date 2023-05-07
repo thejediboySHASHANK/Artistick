@@ -21,7 +21,7 @@ This project was built using the following technologies:
 
 1) HTML, CSS, and JavaScript for the front-end
 
-React for building the user interface
+2) React for building the user interface
 
 Node.js and Express.js for the back-end
 
