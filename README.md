@@ -25,7 +25,7 @@ This project was built using the following technologies:
 
 3) Node.js and Express.js for the back-end
 
-MongoDB for storing data
+4) MongoDB for storing data
 
 
 ## Installation
