@@ -6,7 +6,7 @@ Welcome to our open-source eCommerce website that offers a web-to-print solution
 ## Features
 1) User authentication and registration system
 
-1) Intuitive poster design uploading interface
+2) Intuitive poster design uploading interface
 
 2) Commission earning program based on the sales of your added posters
 
