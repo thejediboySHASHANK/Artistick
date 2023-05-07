@@ -35,7 +35,7 @@ To run this project locally, follow these steps:
 1) Clone the repository: git clone https://github.com/thejediboySHASHANK/Artistick.git
 
 ```bash
-//2) Install the necessary dependencies: //
+/*2) Install the necessary dependencies:*/
 
 npm install
 ```
