@@ -12,7 +12,7 @@ Welcome to our open-source eCommerce website that offers a web-to-print solution
 
 4) Responsive design for optimal viewing on any device
 
-4) Easy-to-use admin panel for managing uploaded posters and sales
+5) Easy-to-use admin panel for managing uploaded posters and sales
 
 
 ## Technologies Used
